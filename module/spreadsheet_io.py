@@ -28,7 +28,9 @@ class SpreadsheetIO:
             result[key] = {
                 'eng_name': item.eng_name,
                 'x': item.x,
-                'y': item.y
+                'y': item.y,
+                'width': item.width,
+                'height': item.height
             }
         return result
 
@@ -51,6 +53,8 @@ class SpreadsheetIO:
             if item['tw_name'] in xls_data:
                 key = item['tw_name']
                 item['eng_name'] = xls_data[key]['eng_name']
+                item['width'] = xls_data[key]['width']
+                item['height'] = xls_data[key]['height'] 
         return data_list
 
     def __dict_to_tuple(self, data_list):
@@ -60,7 +64,7 @@ class SpreadsheetIO:
         result = []
         for item in data_list:
             result.append(
-                (self.row_num, item['tw_name'], item['eng_name'], item['x'], item['y'])
+                (self.row_num, item['tw_name'], item['eng_name'], item['x'], item['y'], item['width'], item['height'])
             )
             self.row_num = self.row_num + 1
         return result
@@ -73,6 +77,8 @@ class SpreadsheetIO:
             result[key] = {
                 'eng_name': item['eng_name'],
                 'x': item['x'],
-                'y': item['y']
+                'y': item['y'],
+                'width': item['width'],
+                'height': item['height']
             }
         return result

@@ -76,14 +76,18 @@ def main(path):
         basename = os.path.basename(path)
         xlsx_data = get_xlsx_data([dirname, basename])
         export_png(xlsx_data, dirname)
+        os.system('pause')
 
     elif os.path.isdir(path):
         # 為資料夾的情況
         psd_list = get_psd_list(path)
+        if not psd_list:
+            print('No files.')
         # 遍歷所有 psd 檔案並檢索對應 xlsx 。
         for item in psd_list:
             xlsx_data = get_xlsx_data(item)
             export_png(xlsx_data, path)
+        os.system('pause')
 
 if __name__ == '__main__':
     if (len(sys.argv) > 1):
@@ -92,3 +96,4 @@ if __name__ == '__main__':
     else:
         # 沒有路徑參數的情況
         main('.')
+    

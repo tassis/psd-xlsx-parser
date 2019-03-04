@@ -50,6 +50,7 @@ class PSDParser:
                 if layer_dict[name]['eng_name']:    
                     name = layer_dict[name]['eng_name']
             layer.as_PIL().save(f'{pack_dir}/{self.filename}/{name}.png') 
+            print(f'export layer " {layer.name} " to {pack_dir}/{self.filename}/{name}.png')
 
     def __get_layer_data(self, layer):
         """
@@ -58,8 +59,10 @@ class PSDParser:
         return {
             'tw_name': layer.name,
             'eng_name': '',
-            'x': 720 - layer.bbox.x1,
-            'y': 1280 - layer.bbox.y1
+            'x': layer.bbox.x1,
+            'y': layer.bbox.y1,
+            'width': layer.width,
+            'height': layer.height
         }
     
     
